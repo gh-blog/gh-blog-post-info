@@ -1,15 +1,17 @@
 through2 = require 'through2'
-{ guessDir, isRTL, isLTR } = require '../utils'
 
 # requires = ['html']
 
 module.exports = (options = { blog: { } }) ->
     { blog } = options
     processFile = (file, enc, done) ->
-        # @TODO @FIXME get rid of this
-        file.type = 'text'
-
         file.isPost = yes
+        file.type = 'text'
+        file.images = []
+        file.videos = []
+        file.audios = []
+        file.links = []
+
         if file.$
             { $ } = file
             getTextDir = (fallback) ->
