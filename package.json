@@ -1,0 +1,22 @@
+{
+  "name": "pipelog-info",
+  "version": "0.0.0",
+  "description": "A Pipelog plugin, extracts the post title and excerpt.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forabi/pipelog-info.git"
+  },
+  "keywords": [
+    "pipelog-plugin"
+  ],
+  "author": "Muhammad Fawwaz Orabi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/forabi/pipelog-info/issues"
+  },
+  "homepage": "https://github.com/forabi/pipelog-info"
+}
