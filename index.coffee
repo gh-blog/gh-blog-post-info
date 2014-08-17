@@ -1,3 +1,4 @@
+path = require 'path'
 through2 = require 'through2'
 
 # requires = ['html']
@@ -11,6 +12,11 @@ module.exports = (options = { blog: { } }) ->
         file.videos = []
         file.audios = []
         file.links = []
+
+        _extname = path.extname file.path
+        file.id =
+            path.basename(file.path)
+            .replace (new RegExp "#{_extname}$", 'i'), ''
 
         if file.$
             { $ } = file
