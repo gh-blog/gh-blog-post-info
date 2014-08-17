@@ -14,9 +14,6 @@ module.exports = (options = { blog: { } }) ->
 
         if file.$
             { $ } = file
-            getTextDir = (fallback) ->
-                text = $.root().clone().remove('pre').text()
-                guessDir text, fallback
 
             isDescriptive = (i, paragraph) ->
                 $paragraph = $ paragraph
@@ -29,8 +26,6 @@ module.exports = (options = { blog: { } }) ->
             file.excerpt =
                 $('p').filter(isDescriptive)
                 .html()
-
-            file.dir = getTextDir blog.dir || 'ltr' if not file.dir
 
             # Inherit properties from blog
             try
