@@ -6,38 +6,39 @@ through2 = require 'through2'
 module.exports = (options = { blog: { } }) ->
     { blog } = options
     processFile = (file, enc, done) ->
-        file.isPost = yes
-        file.type = 'text'
-        file.images = []
-        file.videos = []
-        file.audios = []
-        file.links = []
+        if path.extname(file.path).match /.html?/i
+            file.isPost = yes
+            file.type = 'text'
+            file.stats =
+                images: []
+                videos: []
+                audios: []
+                links: []
 
-        _extname = path.extname file.path
-        file.id =
-            path.basename(file.path)
-            .replace (new RegExp "#{_extname}$", 'i'), ''
+            _extname = path.extname file.path
+            file.id =
+                path.basename(file.path)
+                .replace (new RegExp "#{_extname}$", 'i'), ''
 
-        if file.$
-            { $ } = file
+            if file.$
+                { $ } = file
 
-            isDescriptive = (i, paragraph) ->
-                $paragraph = $ paragraph
-                $paragraph.text().trim().match /\.$/gi
+                isDescriptive = (i, paragraph) ->
+                    $paragraph = $ paragraph
+                    $paragraph.text().trim().match /\.$/gi
 
-            file.title = $('h1').first().text().trim()
-            file.image = $('img').first().attr('src') || null
+                file.title = $('h1').first().text().trim()
+                file.image = $('img').first().attr('src') || null
 
-            # @TODO: enhance excerpt
-            file.excerpt =
-                $('p').filter(isDescriptive)
-                .html()
+                # @TODO: enhance excerpt
+                file.excerpt =
+                    $('p').filter(isDescriptive)
+                    .html()
 
-            # Inherit properties from blog
-            try
-                for key in ['author', 'language']
-                    file[key] = blog[key] if not file[key]
-
+                # Inherit properties from blog
+                try
+                    for key in ['author', 'language']
+                        file[key] = blog[key] if not file[key]
 
         done null, file
 
