@@ -8,6 +8,10 @@ module.exports = (options = { blog: { } }) ->
     processFile = (file, enc, done) ->
         if path.extname(file.path).match /.html?/i
             file.isPost = yes
+
+            if not file.author
+                try file.author = blog.author || blog.authors[0]
+
             file.type = 'text'
             file.stats =
                 images: []
