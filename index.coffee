@@ -13,11 +13,11 @@ module.exports = (options = { blog: { } }) ->
                 try file.author = blog.author || blog.authors[0]
 
             file.type = 'text'
-            file.stats =
-                images: []
-                videos: []
-                audios: []
-                links: []
+
+            file.images = []
+            file.videos = []
+            file.audios = []
+            file.links = []
 
             _extname = path.extname file.path
             file.id =
