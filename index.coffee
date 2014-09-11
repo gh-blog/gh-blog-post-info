@@ -16,7 +16,7 @@ module.exports = (options = { blog: { } }) ->
             file.videos = []
             file.audios = []
             file.links = []
-            
+
             file.categories = []
 
             file.styles = []
