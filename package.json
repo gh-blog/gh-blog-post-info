@@ -1,6 +1,6 @@
 {
   "name": "gh-blog-post-info",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A gh-blog plugin, extracts the post title and excerpt.",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "through2": "^0.6.1"
   },
   "gh-blog": {
-    "provides": ["info"]
+    "provides": ["info"],
+    "recommends": ["status", "creation-date", "modification-date"]
   }
 }
